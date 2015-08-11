@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm')@init('luan.mai.tutorial.zk.MyViewModel')"
+            validationMessages="@id('vmsgs')">
+        <hlayout>count: <label value="@load(vm.count)" /></hlayout>
+        <button label="add" onClick="@command('cmd')"/>
+    </window>
+</zk>

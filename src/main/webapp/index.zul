@@ -1,0 +1,40 @@
+<?taglib uri="/WEB-INF/tld/zkspring/security.tld" prefix="sec"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?link href="resources/bower_components/metro-ui-css/build/css/metro.min.css" rel="stylesheet" type="text/css"?>
+<?link href="resources/bower_components/metro-ui-css/build/css/metro-icons.min.css" rel="stylesheet" type="text/css"?>
+<?link href="resources/bower_components/metro-ui-css/build/css/metro-responsive.min.css" rel="stylesheet" type="text/css"?>
+<?script type="text/javascript" src="resources/bower_components/metro-ui-css/build/js/metro.min.js"?>
+<zk>
+
+	<div sclass="leader">
+		<!-- all your UI code goes here -->
+        <div if="${sec:isAllGranted('ROLE_ADMIN')}">
+            HEY
+
+        </div>
+		<window apply="org.zkoss.bind.BindComposer"
+				title=""
+                border="normal"
+				viewModel="@id('vm')@init('luan.mai.tutorial.zk.MyViewModel')"
+				validationMessages="@id('vmsgs')">
+			<hlayout>count: <label sclass="leader" value="@load(vm.count)" /></hlayout>
+
+            <h:button onClick="@command('cmd')" class="button helper-button reveal" xmlns:h="http://www.w3.org/1999/xhtml"><h:span class="mif-looks"></h:span></h:button>
+            ${authentication.principal.username}
+		</window>
+
+        <h:div data-role="charm" data-position="top" id="top-charm" xmlns:h="xhtml"><h:h1 class="text-light">Top charm</h:h1></h:div>
+        <h:button class="button" onclick="showCharm('top')" xmlns:h="xhtml">Top side</h:button>
+
+	</div>
+    <script>
+        function showCharm(id){
+            var  charm = jq("#"+id+"-charm").data("charm");
+            if (charm.element.data("opened") === true) {
+                charm.close();
+            } else {
+                charm.open();
+            }
+        }
+    </script>
+</zk>

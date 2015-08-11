@@ -1,0 +1,22 @@
+<?taglib uri="/WEB-INF/tld/zkspring/security.tld" prefix="sec"?>
+<zk>
+	<style>
+		body *:not([class*="z-icon-"]) {
+		font-family: Arial;
+		font-size: 18pt;
+		}
+
+	</style>
+	<div style="background-color: black">
+		<!-- all your UI code goes here -->
+		<div if="${sec:isAllGranted('ROLE_USER')}">
+			HEY
+		</div>
+		<window apply="org.zkoss.bind.BindComposer"
+				viewModel="@id('vm')@init('luan.mai.tutorial.zk.MyViewModel')"
+				validationMessages="@id('vmsgs')">
+			<hlayout>count: <label value="@load(vm.count)" /></hlayout>
+			<button label="add" onClick="@command('cmd')"/>
+		</window>
+	</div>
+</zk>

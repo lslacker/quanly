@@ -1,0 +1,49 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?link href="resources/bower_components/metro-ui-css/build/css/metro.min.css" rel="stylesheet" type="text/css"?>
+<?link href="resources/bower_components/metro-ui-css/build/css/metro-icons.min.css" rel="stylesheet" type="text/css"?>
+<?link href="resources/bower_components/metro-ui-css/build/css/metro-responsive.min.css" rel="stylesheet" type="text/css"?>
+<?script type="text/javascript" src="resources/bower_components/metro-ui-css/build/js/metro.min.js"?>
+<zk>
+<style dynamic="true">
+    .mydb {
+        height: 100%;
+    }
+</style>
+    <div sclass="mydb bg-darkTeal">
+        <window position="center" mode="overlapped" >
+            <html style="color:red" if="${not empty param.login_error}">
+                <![CDATA[
+                Your login attempt was not successful, try again.<br/><br/>
+                Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
+               ]]>
+            </html>
+
+            <h:div class="login-form padding20 block-shadow" xmlns:h="native">
+
+                <h:form action="j_spring_security_check" method="POST">
+                    <h:h1 class="text-light">Login to service</h:h1>
+                    <h:hr class="thin"/>
+                    <h:br />
+                    <h:div class="input-control text full-size" data-role="input">
+                        <h:label for="user_login">User email:</h:label>
+                        <h:input type="text" name="j_username" id="j_username"/>
+                        <h:button class="button helper-button clear"><span class="mif-cross"></span></h:button>
+                    </h:div>
+                    <h:br />
+                    <h:br />
+                    <h:div class="input-control password full-size" data-role="input">
+                        <h:label for="user_password">User password:</h:label>
+                        <h:input type="password" name="j_password" id="j_password"/>
+                        <h:button class="button helper-button reveal"><span class="mif-looks"></span></h:button>
+                    </h:div>
+                    <h:br />
+                    <h:br />
+                    <h:div class="form-actions">
+                        <h:button type="submit" class="button primary">Login to...</h:button>
+                        <h:button type="button" class="button link">Cancel</h:button>
+                    </h:div>
+                </h:form>
+            </h:div>
+        </window>
+    </div>
+</zk>
